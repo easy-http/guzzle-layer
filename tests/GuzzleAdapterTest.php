@@ -1,14 +1,14 @@
 <?php
 
-namespace Tests\Clients;
+namespace Tests;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use PHPUnit\Framework\TestCase;
-use Pleets\HttpClient\Clients\Guzzle\Adapter;
-use Pleets\HttpClient\Clients\Guzzle\Request;
+use Pleets\HttpClient\GuzzleAdapter;
+use Pleets\HttpClient\GuzzleRequest;
 use Pleets\HttpClient\Exceptions\HttpClientException;
 use Pleets\HttpClient\Exceptions\ResponseNotParsedException;
 use Tests\Mocks\PayPalApi;
@@ -28,8 +28,8 @@ class GuzzleAdapterTest extends TestCase
         $handler = HandlerStack::create(new RatesApi());
         $client  = new Client(['handler' => $handler]);
 
-        $request = new Request('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD', []);
-        $adapter = new Adapter($client);
+        $request = new GuzzleRequest('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD', []);
+        $adapter = new GuzzleAdapter($client);
 
         $response = $adapter->request($request);
 
@@ -52,8 +52,8 @@ class GuzzleAdapterTest extends TestCase
         );
         $client  = new Client(['handler' => $handler]);
 
-        $request = new Request('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD', []);
-        $adapter = new Adapter($client);
+        $request = new GuzzleRequest('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD', []);
+        $adapter = new GuzzleAdapter($client);
         $adapter->request($request);
     }
 
@@ -69,8 +69,8 @@ class GuzzleAdapterTest extends TestCase
         $handler = HandlerStack::create($mock);
         $client  = new Client(['handler' => $handler]);
 
-        $request = new Request('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD', []);
-        $adapter = new Adapter($client);
+        $request = new GuzzleRequest('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD', []);
+        $adapter = new GuzzleAdapter($client);
 
         $adapter->request($request)->response();
     }
@@ -83,14 +83,14 @@ class GuzzleAdapterTest extends TestCase
         $handler = HandlerStack::create(new TwitterApi());
         $client  = new Client(['handler' => $handler]);
 
-        $request = new Request(
+        $request = new GuzzleRequest(
             'GET',
             'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=darioriverat&count=7',
             []
         );
         $token   = 'tGzv3JOkF0XG5Qx2TlKWIA';
         $request->setHeader('Authorization', 'Bearer ' . $token);
-        $adapter = new Adapter($client);
+        $adapter = new GuzzleAdapter($client);
 
         $response = $adapter->request($request);
 
@@ -106,12 +106,12 @@ class GuzzleAdapterTest extends TestCase
         $handler = HandlerStack::create(new PayPalApi());
         $client  = new Client(['handler' => $handler]);
 
-        $request = new Request('POST', 'https://api.sandbox.paypal.com/v1/oauth2/token', []);
+        $request = new GuzzleRequest('POST', 'https://api.sandbox.paypal.com/v1/oauth2/token', []);
         $user    = 'AeA1QIZXiflr1_-r0U2UbWTziOWX1GRQer5jkUq4ZfWT5qwb6qQRPq7jDtv57TL4POEEezGLdutcxnkJ';
         $pass    = 'ECYYrrSHdKfk_Q0EdvzdGkzj58a66kKaUQ5dZAEv4HvvtDId2_DpSuYDB088BZxGuMji7G4OFUnPog6p';
         $request->setBasicAuth($user, $pass);
         $request->setQuery(['grant_type' => 'client_credentials']);
-        $adapter = new Adapter($client);
+        $adapter = new GuzzleAdapter($client);
 
         $response = $adapter->request($request);
 

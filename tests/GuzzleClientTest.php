@@ -5,10 +5,9 @@ namespace Tests;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Handler\MockHandler;
 use PHPUnit\Framework\TestCase;
-use Pleets\HttpClient\Clients\Constants\Client;
 use Pleets\HttpClient\Exceptions\HttpClientException;
 use Pleets\HttpClient\Exceptions\ResponseNotParsedException;
-use Pleets\HttpClient\Standard;
+use Pleets\HttpClient\GuzzleClient;
 use Tests\Mocks\PayPalApi;
 use Tests\Mocks\RatesApi;
 use Tests\Mocks\Responses\PayPalApiResponse;
@@ -16,14 +15,14 @@ use Tests\Mocks\Responses\RatesApiResponse;
 use Tests\Mocks\Responses\SearchTweetsResponse;
 use Tests\Mocks\TwitterApi;
 
-class GuzzleStandardTest extends TestCase
+class GuzzleClientTest extends TestCase
 {
     /**
      * @test
      */
     public function itCanSendAHttpRequestAndGetTheResponse()
     {
-        $client = new Standard(Client::GUZZLE);
+        $client = new GuzzleClient();
         $client->withHandler(new RatesApi());
 
         $response = $client->request('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD');
@@ -40,7 +39,7 @@ class GuzzleStandardTest extends TestCase
         $this->expectException(HttpClientException::class);
         $this->expectExceptionMessage('Error Communicating with Server');
 
-        $client = new Standard(Client::GUZZLE);
+        $client = new GuzzleClient();
         $client->withHandler(
             new MockHandler(
                 [
@@ -65,7 +64,7 @@ class GuzzleStandardTest extends TestCase
         $mock = new RatesApi();
         $mock->withResponse(200, 'some string');
 
-        $client = new Standard(Client::GUZZLE);
+        $client = new GuzzleClient();
         $client->withHandler($mock);
 
         $client->request('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD')->response();
@@ -76,7 +75,7 @@ class GuzzleStandardTest extends TestCase
      */
     public function itCanSetHeadersOnRequests()
     {
-        $client = new Standard(Client::GUZZLE);
+        $client = new GuzzleClient();
         $client->withHandler(new TwitterApi());
 
         $client->prepareRequest(
@@ -96,7 +95,7 @@ class GuzzleStandardTest extends TestCase
      */
     public function itCanHandleBasicAuthentication()
     {
-        $client = new Standard(Client::GUZZLE);
+        $client = new GuzzleClient();
         $client->withHandler(new PayPalApi());
 
         $client->prepareRequest('POST', 'https://api.sandbox.paypal.com/v1/oauth2/token');
