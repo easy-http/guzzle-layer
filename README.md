@@ -1,5 +1,3 @@
-# Guzzle Layer
-
 <p align="center"><img src="https://blog.pleets.org/img/articles/easy-http-logo.png" height="150"></p>
 
 <p align="center">
@@ -8,6 +6,8 @@
 <a href="https://sonarcloud.io/dashboard?id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=security_rating" alt="Bugs"></a>
 <a href="https://scrutinizer-ci.com/g/easy-http/guzzle-layer/?branch=master"><img src="https://scrutinizer-ci.com/g/easy-http/guzzle-layer/badges/coverage.png?b=master" alt="Code Coverage"></a>
 </p>
+
+# Guzzle Layer
 
 This is an HTTP layer for Guzzle Client. For more layers see [Easy Http](https://github.com/easy-http).
 
