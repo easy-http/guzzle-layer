@@ -1,8 +1,8 @@
 <?php
 
-namespace Pleets\HttpClient;
+namespace EasyHttp\GuzzleLayer;
 
-use Pleets\HttpClient\Contracts\HttpClientRequest;
+use EasyHttp\GuzzleLayer\Contracts\HttpClientRequest;
 
 class GuzzleRequest implements HttpClientRequest
 {

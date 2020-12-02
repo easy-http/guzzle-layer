@@ -1,6 +1,6 @@
 {
-    "name": "pleets/php-http-clients",
-    "description": "Integration of several HTTP Clients in a unique interface",
+    "name": "easy-http/guzzle-layer",
+    "description": "Http layer for Guzzle Client",
     "type": "library",
     "license": "MIT",
     "keywords": [
@@ -9,8 +9,8 @@
     ],
     "homepage": "https://pleets.org",
     "support": {
-        "issues": "https://github.com/pleets/php-http-client-integrator/issues",
-        "source": "https://github.com/pleets/php-http-client-integrator"
+        "issues": "https://github.com/easy-http/guzzle-layer/issues",
+        "source": "https://github.com/easy-http/guzzle-layer"
     },
     "authors": [
         {
@@ -48,7 +48,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Pleets\\HttpClient\\": "src/"
+            "EasyHttp\\GuzzleLayer\\": "src/"
         }
     },
     "autoload-dev": {
