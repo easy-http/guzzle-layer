@@ -1,10 +1,10 @@
 <?php
 
-namespace Pleets\HttpClient\Clients\Guzzle;
+namespace Pleets\HttpClient;
 
 use Pleets\HttpClient\Contracts\HttpClientRequest;
 
-class Request implements HttpClientRequest
+class GuzzleRequest implements HttpClientRequest
 {
     protected string $method;
 
