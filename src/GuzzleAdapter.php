@@ -1,15 +1,14 @@
 <?php
 
-namespace Pleets\HttpClient;
+namespace EasyHttp\GuzzleLayer;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\TransferException;
-use Pleets\HttpClient\GuzzleResponse;
-use Pleets\HttpClient\Contracts\HttpClientAdapter;
-use Pleets\HttpClient\Contracts\HttpClientRequest;
-use Pleets\HttpClient\Contracts\HttpClientResponse;
-use Pleets\HttpClient\Exceptions\HttpClientException;
+use EasyHttp\GuzzleLayer\Contracts\HttpClientAdapter;
+use EasyHttp\GuzzleLayer\Contracts\HttpClientRequest;
+use EasyHttp\GuzzleLayer\Contracts\HttpClientResponse;
+use EasyHttp\GuzzleLayer\Exceptions\HttpClientException;
 
 class GuzzleAdapter implements HttpClientAdapter
 {

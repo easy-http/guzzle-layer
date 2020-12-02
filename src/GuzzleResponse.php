@@ -1,9 +1,9 @@
 <?php
 
-namespace Pleets\HttpClient;
+namespace EasyHttp\GuzzleLayer;
 
-use Pleets\HttpClient\Contracts\HttpClientResponse;
-use Pleets\HttpClient\Exceptions\ResponseNotParsedException;
+use EasyHttp\GuzzleLayer\Contracts\HttpClientResponse;
+use EasyHttp\GuzzleLayer\Exceptions\ResponseNotParsedException;
 use Psr\Http\Message\ResponseInterface;
 
 class GuzzleResponse implements HttpClientResponse
