@@ -1,4 +1,4 @@
-# Symfony Layer
+# Guzzle Layer
 
 <p align="center"><img src="https://blog.pleets.org/img/articles/easy-http-logo.png" height="150"></p>
 
@@ -9,11 +9,11 @@
 <a href="https://scrutinizer-ci.com/g/easy-http/guzzle-layer/?branch=master"><img src="https://scrutinizer-ci.com/g/easy-http/guzzle-layer/badges/coverage.png?b=master" alt="Code Coverage"></a>
 </p>
 
-This is an HTTP layer for Symfony Client. For more layers see [Easy Http](https://github.com/easy-http).
+This is an HTTP layer for Guzzle Client. For more layers see [Easy Http](https://github.com/easy-http).
 
-This library supports the following versions of Symfony Http Client.
+This library supports the following versions of Guzzle Http Client.
 
-- Symfony v5.1
+- Guzzle v7.0
 
 You can download this project as follows.
 
