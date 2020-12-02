@@ -1,12 +1,12 @@
 <?php
 
-namespace Pleets\HttpClient\Clients\Guzzle;
+namespace Pleets\HttpClient;
 
 use Pleets\HttpClient\Contracts\HttpClientResponse;
 use Pleets\HttpClient\Exceptions\ResponseNotParsedException;
 use Psr\Http\Message\ResponseInterface;
 
-class Response implements HttpClientResponse
+class GuzzleResponse implements HttpClientResponse
 {
     protected ResponseInterface $response;
 
