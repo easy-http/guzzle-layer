@@ -15,10 +15,12 @@ This library supports the following versions of Guzzle Http Client.
 
 - Guzzle v7.0
 
-You can download this project as follows.
+# Installation
+
+Use following command to install this library:
 
 ```bash
-git clone git@github.com:easy-http/guzzle-layer.git
+composer require easy-http/guzzle-layer
 ```
 
 # Usage
