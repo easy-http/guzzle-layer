@@ -1,6 +1,6 @@
 <?php
 
-namespace Pleets\HttpClient\Exceptions;
+namespace EasyHttp\GuzzleLayer\Exceptions;
 
 use Exception;
 

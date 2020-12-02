@@ -1,11 +1,11 @@
 <?php
 
-namespace Pleets\HttpClient;
+namespace EasyHttp\GuzzleLayer;
 
-use Pleets\HttpClient\Factories\ClientFactory;
-use Pleets\HttpClient\Contracts\HttpClientAdapter;
-use Pleets\HttpClient\Contracts\HttpClientRequest;
-use Pleets\HttpClient\Contracts\HttpClientResponse;
+use EasyHttp\GuzzleLayer\Factories\ClientFactory;
+use EasyHttp\GuzzleLayer\Contracts\HttpClientAdapter;
+use EasyHttp\GuzzleLayer\Contracts\HttpClientRequest;
+use EasyHttp\GuzzleLayer\Contracts\HttpClientResponse;
 
 class GuzzleClient
 {
