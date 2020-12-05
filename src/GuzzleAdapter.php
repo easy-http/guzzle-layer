@@ -2,13 +2,13 @@
 
 namespace EasyHttp\GuzzleLayer;
 
+use EasyHttp\LayerContracts\Contracts\HttpClientAdapter;
+use EasyHttp\LayerContracts\Contracts\HttpClientRequest;
+use EasyHttp\LayerContracts\Contracts\HttpClientResponse;
+use EasyHttp\LayerContracts\Exceptions\HttpClientException;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\TransferException;
-use EasyHttp\GuzzleLayer\Contracts\HttpClientAdapter;
-use EasyHttp\GuzzleLayer\Contracts\HttpClientRequest;
-use EasyHttp\GuzzleLayer\Contracts\HttpClientResponse;
-use EasyHttp\GuzzleLayer\Exceptions\HttpClientException;
 
 class GuzzleAdapter implements HttpClientAdapter
 {
