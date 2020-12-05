@@ -8,7 +8,9 @@ class HttpInfo extends BaseMock
 {
     public function __invoke(RequestInterface $request)
     {
-        return $this->response(200, [
+        return $this->response(
+            200,
+            [
             'method' => $request->getMethod(),
             'body' => $request->getBody()->getContents(),
             'uri' =>
@@ -23,7 +25,8 @@ class HttpInfo extends BaseMock
                 'query' => $request->getUri()->getQuery(),
             ],
             'headers' => $this->parseHeaders($request->getHeaders()),
-        ]);
+            ]
+        );
     }
 
     protected function parseHeaders(array $headers): array
