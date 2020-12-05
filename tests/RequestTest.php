@@ -11,6 +11,8 @@ use Tests\Mocks\HttpInfo;
 abstract class RequestTest extends TestCase
 {
     use HasMock;
+    
+    protected string $uri = 'https://example.com/api';
 
     abstract protected function createRequest(string $method, string $uri): HttpClientRequest;
     abstract protected function buildAdapter(): HttpClientAdapter;
@@ -22,7 +24,7 @@ abstract class RequestTest extends TestCase
     {
         $this->setMock(new HttpInfo());
 
-        $request = $this->createRequest('GET', 'https://example.com/api');
+        $request = $this->createRequest('GET', $this->uri);
         $response = $this->buildAdapter()->request($request)->parseJson();
 
         $this->assertSame('GET', $request->getMethod());
@@ -38,7 +40,7 @@ abstract class RequestTest extends TestCase
     {
         $this->setMock(new HttpInfo());
 
-        $request = $this->createRequest('GET', 'https://example.com/api');
+        $request = $this->createRequest('GET', $this->uri);
         $request->setJson(['key' => 'value']);
         $response = $this->buildAdapter()->request($request)->parseJson();
 
@@ -53,7 +55,7 @@ abstract class RequestTest extends TestCase
     {
         $this->setMock(new HttpInfo());
 
-        $request = $this->createRequest('GET', 'https://example.com/api');
+        $request = $this->createRequest('GET', $this->uri);
         $request->setQuery(['key' => 'value']);
         $response = $this->buildAdapter()->request($request)->parseJson();
 
@@ -68,7 +70,7 @@ abstract class RequestTest extends TestCase
     {
         $this->setMock(new HttpInfo());
 
-        $request = $this->createRequest('GET', 'https://example.com/api');
+        $request = $this->createRequest('GET', $this->uri);
         $request->setHeader('key', 'value');
         $response = $this->buildAdapter()->request($request)->parseJson();
 
