@@ -22,7 +22,7 @@
         "php": "7.4.*",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.0",
-        "symfony/http-client": "^5.1"
+        "easy-http/layer-contracts": "^0.1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.2",
@@ -31,8 +31,8 @@
     "scripts": {
         "phpunit": "phpunit --stop-on-error --stop-on-failure --testdox",
         "phpunit-xml": "phpunit --stop-on-error --stop-on-failure --coverage-clover phpunit.coverage.xml",
-        "phpcs-check":  "phpcs --colors -s",
-        "phpcs-fix":  "phpcbf --colors -s",
+        "phpcs-check": "phpcs --colors -s",
+        "phpcs-fix": "phpcbf --colors -s",
         "phpcs-auto-check": "@phpcs-check --standard=.phpcs.xml",
         "phpcs-auto-fix": "@phpcs-fix --standard=.phpcs.xml",
         "phpcs-auto-check-project": "phpcs --report=summary -p",
