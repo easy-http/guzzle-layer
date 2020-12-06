@@ -3,7 +3,6 @@
 namespace Tests;
 
 use EasyHttp\LayerContracts\Exceptions\HttpClientException;
-use EasyHttp\LayerContracts\Exceptions\ImpossibleToParseJsonException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Handler\MockHandler;
@@ -53,24 +52,6 @@ class GuzzleAdapterTest extends TestCase
         $request = new GuzzleRequest('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD', []);
         $adapter = new GuzzleAdapter($client);
         $adapter->request($request);
-    }
-
-    /**
-     * @test
-     */
-    public function itThrowsTheNotParsedExceptionOnInvalidJsonString()
-    {
-        $this->expectException(ImpossibleToParseJsonException::class);
-
-        $mock = new RatesApi();
-        $mock->withResponse(200, 'some string');
-        $handler = HandlerStack::create($mock);
-        $client  = new Client(['handler' => $handler]);
-
-        $request = new GuzzleRequest('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD', []);
-        $adapter = new GuzzleAdapter($client);
-
-        $adapter->request($request)->parseJson();
     }
 
     /**

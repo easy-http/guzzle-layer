@@ -31,6 +31,16 @@ abstract class RequestTest extends TestCase
         $this->assertSame('https://example.com/api', $request->getUri());
         $this->assertSame($request->getMethod(), $response['method']);
         $this->assertSame($request->getUri(), $response['uri']);
+
+        $request->setMethod('POST');
+        $request->setUri('http://other-uri.com');
+
+        $response = $this->buildAdapter()->request($request)->parseJson();
+
+        $this->assertSame('POST', $request->getMethod());
+        $this->assertSame('http://other-uri.com', $request->getUri());
+        $this->assertSame($request->getMethod(), $response['method']);
+        $this->assertSame($request->getUri(), $response['uri']);
     }
 
     /**

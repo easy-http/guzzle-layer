@@ -21,11 +21,11 @@ class TwitterApi extends BaseMock
         }
 
         if ($request->getUri()->getHost() != $this->hostname) {
-            return $this->response(400, 'Not found');
+            return $this->jsonResponse(400, 'Not found');
         }
 
         if (! $this->isAuthTokenCorrect($request)) {
-            return $this->response(
+            return $this->jsonResponse(
                 401,
                 '',
                 [
@@ -35,10 +35,10 @@ class TwitterApi extends BaseMock
         }
 
         if ($request->getUri()->getPath() === '/1.1/statuses/user_timeline.json') {
-            return $this->response(200, $this->tweets(), [], 'OK');
+            return $this->jsonResponse(200, $this->tweets(), [], 'OK');
         }
 
-        return $this->response(400, 'Not found');
+        return $this->jsonResponse(400, 'Not found');
     }
 
     private function tweets(): array
