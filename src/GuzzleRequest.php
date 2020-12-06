@@ -103,7 +103,7 @@ class GuzzleRequest implements HttpClientRequest
         return $this;
     }
 
-    public function options()
+    public function options(): array
     {
         $options = [
             'timeout' => $this->timeout,
