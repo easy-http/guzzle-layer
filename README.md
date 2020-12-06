@@ -10,6 +10,10 @@
 
 This is an HTTP layer for Guzzle Client. For more layers see [Easy Http](https://github.com/easy-http).
 
+<a href="https://sonarcloud.io/dashboard?id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=security_rating" alt="Bugs"></a>
+<a href="https://sonarcloud.io/dashboard?id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=bugs" alt="Bugs"></a>
+<a href="https://sonarcloud.io/dashboard?id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=code_smells" alt="Bugs"></a>
+
 This library supports the following versions of Guzzle Http Client.
 
 - Guzzle v7.0
@@ -35,7 +39,7 @@ $client = new GuzzleClient();
 $response = $client->call('GET', 'https://api.ratesapi.io/api/2020-07-24/?base=USD');
 
 $response->getStatusCode(); // 200
-$response->parseJson();      // JSON
+$response->parseJson();     // array
 ```
 
 ## Prepared requests
@@ -56,7 +60,7 @@ $client->getRequest()->setJson([
 $response = $client->execute();
 
 $response->getStatusCode(); // 201
-$response->parseJson();      // JSON
+$response->parseJson();     // array
 ```
 
 ## HTTP Authentication
@@ -76,5 +80,5 @@ $client->getRequest()->setQuery(['grant_type' => 'client_credentials']);
 $response = $client->execute();
 
 $response->getStatusCode(); // 200
-$response->parseJson();      // JSON
+$response->parseJson();     // array
 ```
