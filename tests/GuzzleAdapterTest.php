@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use EasyHttp\LayerContracts\Exceptions\HttpClientException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Handler\MockHandler;
@@ -9,14 +10,10 @@ use GuzzleHttp\HandlerStack;
 use PHPUnit\Framework\TestCase;
 use EasyHttp\GuzzleLayer\GuzzleAdapter;
 use EasyHttp\GuzzleLayer\GuzzleRequest;
-use EasyHttp\GuzzleLayer\Exceptions\HttpClientException;
-use EasyHttp\GuzzleLayer\Exceptions\ResponseNotParsedException;
 use Tests\Mocks\PayPalApi;
 use Tests\Mocks\RatesApi;
 use Tests\Mocks\Responses\PayPalApiResponse;
 use Tests\Mocks\Responses\RatesApiResponse;
-use Tests\Mocks\Responses\SearchTweetsResponse;
-use Tests\Mocks\TwitterApi;
 
 class GuzzleAdapterTest extends TestCase
 {
@@ -34,7 +31,7 @@ class GuzzleAdapterTest extends TestCase
         $response = $adapter->request($request);
 
         $this->assertSame(200, $response->getStatusCode());
-        $this->assertSame(RatesApiResponse::usd(), $response->response());
+        $this->assertSame(RatesApiResponse::usd(), $response->parseJson());
     }
 
     /**
@@ -60,47 +57,6 @@ class GuzzleAdapterTest extends TestCase
     /**
      * @test
      */
-    public function itThrowsTheNotParsedExceptionOnInvalidJsonString()
-    {
-        $this->expectException(ResponseNotParsedException::class);
-
-        $mock = new RatesApi();
-        $mock->withResponse(200, 'some string');
-        $handler = HandlerStack::create($mock);
-        $client  = new Client(['handler' => $handler]);
-
-        $request = new GuzzleRequest('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD', []);
-        $adapter = new GuzzleAdapter($client);
-
-        $adapter->request($request)->response();
-    }
-
-    /**
-     * @test
-     */
-    public function itCanSetHeadersOnRequests()
-    {
-        $handler = HandlerStack::create(new TwitterApi());
-        $client  = new Client(['handler' => $handler]);
-
-        $request = new GuzzleRequest(
-            'GET',
-            'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=darioriverat&count=7',
-            []
-        );
-        $token   = 'tGzv3JOkF0XG5Qx2TlKWIA';
-        $request->setHeader('Authorization', 'Bearer ' . $token);
-        $adapter = new GuzzleAdapter($client);
-
-        $response = $adapter->request($request);
-
-        $this->assertSame(200, $response->getStatusCode());
-        $this->assertSame(SearchTweetsResponse::tweets(), $response->response());
-    }
-
-    /**
-     * @test
-     */
     public function itCanHandleBasicAuthentication()
     {
         $handler = HandlerStack::create(new PayPalApi());
@@ -116,6 +72,6 @@ class GuzzleAdapterTest extends TestCase
         $response = $adapter->request($request);
 
         $this->assertSame(200, $response->getStatusCode());
-        $this->assertSame(PayPalApiResponse::token(), $response->response());
+        $this->assertSame(PayPalApiResponse::token(), $response->parseJson());
     }
 }

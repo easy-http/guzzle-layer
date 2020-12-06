@@ -2,12 +2,15 @@
 
 namespace EasyHttp\GuzzleLayer;
 
-use EasyHttp\GuzzleLayer\Contracts\HttpClientResponse;
-use EasyHttp\GuzzleLayer\Exceptions\ResponseNotParsedException;
+use EasyHttp\GuzzleLayer\Concerns\NeedsParseHeaders;
+use EasyHttp\LayerContracts\Contracts\HttpClientResponse;
+use EasyHttp\LayerContracts\Exceptions\ImpossibleToParseJsonException;
 use Psr\Http\Message\ResponseInterface;
 
 class GuzzleResponse implements HttpClientResponse
 {
+    use NeedsParseHeaders;
+
     protected ResponseInterface $response;
 
     public function __construct(ResponseInterface $response)
@@ -22,16 +25,21 @@ class GuzzleResponse implements HttpClientResponse
 
     public function getHeaders(): array
     {
-        return $this->response->getHeaders();
+        return $this->parseHeaders($this->response->getHeaders());
     }
 
-    public function response(): array
+    public function getBody(): string
+    {
+        return $this->toString();
+    }
+
+    public function parseJson(): array
     {
         $response = $this->toString();
         $data     = json_decode($response, true);
 
         if (! $data) {
-            throw new ResponseNotParsedException(
+            throw new ImpossibleToParseJsonException(
                 'Service response could not be parsed to JSON, Response: ' .
                 $response . ', Reason: ' . json_last_error()
             );

@@ -19,14 +19,14 @@ class RatesApi extends BaseMock
         }
 
         if ($request->getUri()->getHost() != $this->hostname) {
-            return $this->response(400, 'Not found');
+            return $this->jsonResponse(400, 'Not found');
         }
 
         if (preg_match('#^\/api\/\d{4}-\d{2}-\d{2}\/#', $request->getUri()->getPath())) {
-            return $this->response(200, $this->usd(), [], 'OK');
+            return $this->jsonResponse(200, $this->usd(), [], 'OK');
         }
 
-        return $this->response(400, 'Not found');
+        return $this->jsonResponse(400, 'Not found');
     }
 
     private function usd(): array

@@ -2,7 +2,7 @@
 
 namespace EasyHttp\GuzzleLayer;
 
-use EasyHttp\GuzzleLayer\Contracts\HttpClientRequest;
+use EasyHttp\LayerContracts\Contracts\HttpClientRequest;
 
 class GuzzleRequest implements HttpClientRequest
 {
@@ -41,9 +41,9 @@ class GuzzleRequest implements HttpClientRequest
         return $this->uri;
     }
 
-    public function getHeaders(): array
+    public function getHeader(string $key)
     {
-        return $this->headers;
+        return $this->headers[$key] ?? null;
     }
 
     public function getJson(): array
@@ -103,7 +103,7 @@ class GuzzleRequest implements HttpClientRequest
         return $this;
     }
 
-    public function options()
+    public function options(): array
     {
         $options = [
             'timeout' => $this->timeout,
