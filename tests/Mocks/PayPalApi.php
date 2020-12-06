@@ -24,26 +24,26 @@ class PayPalApi extends BaseMock
         }
 
         if ($request->getUri()->getHost() != $this->hostname) {
-            return $this->response(400, 'Not found');
+            return $this->jsonResponse(400, 'Not found');
         }
 
         if ($request->getUri()->getPath() === '/v1/oauth2/token') {
             if ($request->getMethod() === 'GET') {
-                return $this->response(401, $this->invalidToken(), [], 'OK');
+                return $this->jsonResponse(401, $this->invalidToken(), [], 'OK');
             }
 
             if (! $this->isAuthTokenCorrect($request)) {
-                return $this->response(401, $this->failureAuthentication(), [], 'OK');
+                return $this->jsonResponse(401, $this->failureAuthentication(), [], 'OK');
             }
 
             if (empty($request->getUri()->getQuery())) {
-                return $this->response(401, $this->unsupportedGrantType(), [], 'OK');
+                return $this->jsonResponse(401, $this->unsupportedGrantType(), [], 'OK');
             }
 
-            return $this->response(200, $this->token(), [], 'OK');
+            return $this->jsonResponse(200, $this->token(), [], 'OK');
         }
 
-        return $this->response(400, 'Not found');
+        return $this->jsonResponse(400, 'Not found');
     }
 
     private function token(): array

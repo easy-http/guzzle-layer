@@ -2,13 +2,16 @@
 
 namespace Tests\Mocks;
 
+use EasyHttp\GuzzleLayer\Concerns\NeedsParseHeaders;
 use Psr\Http\Message\RequestInterface;
 
 class HttpInfo extends BaseMock
 {
+    use NeedsParseHeaders;
+
     public function __invoke(RequestInterface $request)
     {
-        return $this->response(
+        return $this->jsonResponse(
             200,
             [
                 'method' => $request->getMethod(),
@@ -27,16 +30,5 @@ class HttpInfo extends BaseMock
                 'headers' => $this->parseHeaders($request->getHeaders()),
             ]
         );
-    }
-
-    protected function parseHeaders(array $headers): array
-    {
-        $_headers = [];
-
-        foreach ($headers as $key => $value) {
-            $_headers[$key] = array_shift($value);
-        }
-
-        return $_headers;
     }
 }
