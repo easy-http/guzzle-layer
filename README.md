@@ -52,7 +52,7 @@ use EasyHttp\GuzzleLayer\GuzzleClient;
 
 $client = new GuzzleClient();
 
-$client->prepareRequest('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD');
+$client->prepareRequest('POST', 'https://api.ratesapi.io/api/2020-07-24/');
 $client->getRequest()->setQuery(['base' => 'USD']);
 $response = $client->execute();
 
