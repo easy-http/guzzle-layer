@@ -30,7 +30,7 @@ composer require easy-http/guzzle-layer
 
 ## Simple requests
 
-You can execute a simple request through the Standard class. 
+You can execute a simple request as follows. 
 
 ```php
 use EasyHttp\GuzzleLayer\GuzzleClient;
@@ -44,7 +44,23 @@ $response->parseJson();     // array
 
 ## Prepared requests
 
-A prepared request is a more flexible way to generate requests through any client.
+A prepared request is a more flexible way to generate a request. You can use the `setQuery` method
+to specify request query.
+
+```php
+use EasyHttp\GuzzleLayer\GuzzleClient;
+
+$client = new GuzzleClient();
+
+$client->prepareRequest('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD');
+$client->getRequest()->setQuery(['base' => 'USD']);
+$response = $client->execute();
+
+$response->getStatusCode(); // 200
+$response->parseJson();     // array
+```
+
+Also, you can use the `setJson` method to set a json string as the body.
 
 ```php
 use EasyHttp\GuzzleLayer\GuzzleClient;
