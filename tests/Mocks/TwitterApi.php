@@ -12,7 +12,7 @@ class TwitterApi extends BaseMock
     use HasFixedResponse;
     use HasBearerAuthentication;
 
-    protected $hostname = 'api.twitter.com';
+    protected string $hostname = 'api.twitter.com';
 
     public function __invoke(RequestInterface $request)
     {
