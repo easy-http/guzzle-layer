@@ -17,6 +17,8 @@ use Tests\Mocks\TwitterApi;
 
 class GuzzleClientTest extends TestCase
 {
+    protected $uri = 'https://api.ratesapi.io/api/2020-07-24/?base=USD';
+    
     /**
      * @test
      */
@@ -25,7 +27,7 @@ class GuzzleClientTest extends TestCase
         $client = new GuzzleClient();
         $client->withHandler(new RatesApi());
 
-        $response = $client->call('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD');
+        $response = $client->call('POST', $this->uri);
 
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame(RatesApiResponse::usd(), $response->parseJson());
@@ -51,7 +53,7 @@ class GuzzleClientTest extends TestCase
             )
         );
 
-        $client->call('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD');
+        $client->call('POST', $this->uri);
     }
 
     /**
@@ -67,7 +69,7 @@ class GuzzleClientTest extends TestCase
         $client = new GuzzleClient();
         $client->withHandler($mock);
 
-        $client->call('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD')->parseJson();
+        $client->call('POST', $this->uri)->parseJson();
     }
 
     /**
