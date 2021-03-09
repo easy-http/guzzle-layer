@@ -21,7 +21,7 @@
     "require": {
         "php": "^7.4|^8.0",
         "ext-json": "*",
-        "guzzlehttp/guzzle": "^7.0",
+        "guzzlehttp/guzzle": "^6.0|^7.0",
         "easy-http/layer-contracts": "^0.2"
     },
     "require-dev": {
