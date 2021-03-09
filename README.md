@@ -16,7 +16,8 @@ This is an HTTP layer for Guzzle Client. For more layers see [Easy Http](https:/
 
 This library supports the following versions of Guzzle Http Client.
 
-- Guzzle v7.0 or later
+- PHP 7.4, 8.0
+- Guzzle v6, v7
 
 # Installation
 
