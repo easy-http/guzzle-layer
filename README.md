@@ -1,4 +1,4 @@
-<p align="center"><img src="https://blog.pleets.org/img/articles/easy-http-logo.png" height="150"></p>
+<p align="center"><img src="https://blog.pleets.org/img/articles/easy-http-logo-320.png"></p>
 
 <p align="center">
 <a href="https://travis-ci.com/easy-http/guzzle-layer"><img src="https://travis-ci.com/easy-http/guzzle-layer.svg?branch=master" alt="Build Status"></a>
