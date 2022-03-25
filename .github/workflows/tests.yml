@@ -8,12 +8,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # needed for PHP 7.x
-      - name: Setup PCOV
-        run: |
-          composer require pcov/clobber
-          vendor/bin/pcov clobber
-
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -28,6 +22,12 @@ jobs:
 
       - name: Install dependencies
         run: composer install --no-interaction
+
+      # needed for PHP 7.x
+      - name: Setup PCOV
+        run: |
+          composer require pcov/clobber
+          vendor/bin/pcov clobber
 
       - name: Execute tests
         run: composer phpunit
