@@ -12,22 +12,16 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
-          coverage: pcov
+          coverage: xdebug
 
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup Guzzle
+      - name: Setup Guzzle 6
         run: composer require guzzlehttp/guzzle:^6.0 --no-interaction
 
       - name: Install dependencies
         run: composer install --no-interaction
 
-      # needed for PHP 7.x
-      - name: Setup PCOV
-        run: |
-          composer require pcov/clobber
-          vendor/bin/pcov clobber
-
       - name: Execute tests
-        run: composer phpunit
+        run: composer tests
