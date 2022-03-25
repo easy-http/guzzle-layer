@@ -14,7 +14,9 @@
 
 # Guzzle Layer
 
-This is an HTTP layer for Guzzle Client. For more layers see [Easy Http](https://github.com/easy-http).
+This is an HTTP layer for Guzzle Client based on [Http layer contracts](https://github.com/easy-http/layer-contracts).
+This contracts standardize the way you consume http clients like Guzzle, Symfony, and others. No matter what client you are using, the methods you have to execute to do the job are the same for all!!.
+For more layers see [Easy Http](https://github.com/easy-http).
 
 <a href="https://sonarcloud.io/dashboard?id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=security_rating" alt="Bugs"></a>
 <a href="https://sonarcloud.io/dashboard?id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=bugs" alt="Bugs"></a>
