@@ -5,10 +5,18 @@
 <a href="https://scrutinizer-ci.com/g/easy-http/guzzle-layer"><img src="https://img.shields.io/scrutinizer/g/easy-http/guzzle-layer.svg" alt="Code Quality"></a>
 <a href="https://scrutinizer-ci.com/g/easy-http/guzzle-layer/?branch=master"><img src="https://scrutinizer-ci.com/g/easy-http/guzzle-layer/badges/coverage.png?b=master" alt="Code Coverage"></a>
 </p>
+<p align="center">
+  <a href="https://stand-with-ukraine.pp.ua" title="#StandWithUkraine"><img alt="#StandWithUkraine" src="https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg"></a>
+</p>
+<p align="center">
+    <a href="#tada-php-support" title="PHP Versions Supported"><img alt="PHP Versions Supported" src="https://img.shields.io/badge/php-7.4%20to%208.2-777bb3.svg?logo=php&logoColor=white&labelColor=555555"></a>
+</p>
 
 # Guzzle Layer
 
-This is an HTTP layer for Guzzle Client. For more layers see [Easy Http](https://github.com/easy-http).
+This is an HTTP layer for Guzzle Client based on [Http layer contracts](https://github.com/easy-http/layer-contracts).
+This contracts standardize the way you consume http clients like Guzzle, Symfony, and others. No matter what client you are using, the methods you have to execute to do the job are the same for all!!.
+For more layers see [Easy Http](https://github.com/easy-http).
 
 <a href="https://sonarcloud.io/dashboard?id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=security_rating" alt="Bugs"></a>
 <a href="https://sonarcloud.io/dashboard?id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=bugs" alt="Bugs"></a>
@@ -16,8 +24,8 @@ This is an HTTP layer for Guzzle Client. For more layers see [Easy Http](https:/
 
 This library supports the following versions of Guzzle Http Client.
 
-- PHP 7.4, 8.0
-- Guzzle v6, v7
+<a href="#tada-php-support" title="PHP Versions Supported"><img alt="PHP Versions Supported" src="https://img.shields.io/badge/guzzle-6.x-blue"></a>
+<a href="#tada-php-support" title="PHP Versions Supported"><img alt="PHP Versions Supported" src="https://img.shields.io/badge/guzzle-7.x-blue"></a>
 
 # Installation
 
@@ -89,9 +97,9 @@ use EasyHttp\GuzzleLayer\GuzzleClient;
 
 $client = new GuzzleClient();
 
-$client->prepareRequest('POST', 'https://api.sandbox.paypal.com/v1/oauth2/token');
-$user = 'AeA1QIZXiflr1_-r0U2UbWTziOWX1GRQer5jkUq4ZfWT5qwb6qQRPq7jDtv57TL4POEEezGLdutcxnkJ';
-$pass = 'ECYYrrSHdKfk_Q0EdvzdGkzj58a66kKaUQ5dZAEv4HvvtDId2_DpSuYDB088BZxGuMji7G4OFUnPog6p';
+$client->prepareRequest('POST', 'https://api.sandbox.example.com/v1/oauth2/token');
+$user = 'username';
+$pass = 'password';
 $client->getRequest()->setBasicAuth($user, $pass);
 $client->getRequest()->setQuery(['grant_type' => 'client_credentials']);
 $response = $client->execute();
