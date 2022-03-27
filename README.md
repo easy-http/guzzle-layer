@@ -12,10 +12,14 @@
     <a href="#tada-php-support" title="PHP Versions Supported"><img alt="PHP Versions Supported" src="https://img.shields.io/badge/php-7.4%20to%208.2-777bb3.svg?logo=php&logoColor=white&labelColor=555555"></a>
 </p>
 
+<p align="center">
+    :rocket: Change easily from one client to another using http layer contracts
+</p>
+
 # Guzzle Layer
 
 This is an HTTP layer for Guzzle Client based on [Http layer contracts](https://github.com/easy-http/layer-contracts).
-This contracts standardize the way you consume http clients like Guzzle, Symfony, and others. No matter what client you are using, the methods you have to execute to do the job are the same for all!!.
+These contracts standardize the way you consume http clients like Guzzle, Symfony, and others. No matter what client you are using, the methods you have to execute to do the job are the same for all!!.
 For more layers see [Easy Http](https://github.com/easy-http).
 
 <a href="https://sonarcloud.io/dashboard?id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=security_rating" alt="Bugs"></a>
