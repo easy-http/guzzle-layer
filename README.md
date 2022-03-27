@@ -1,9 +1,9 @@
 <p align="center"><img src="https://blog.pleets.org/img/articles/easy-http-logo-320.png"></p>
 
 <p align="center">
-<a href="https://travis-ci.com/easy-http/guzzle-layer"><img src="https://travis-ci.com/easy-http/guzzle-layer.svg?branch=master" alt="Build Status"></a>
+<a href="https://github.com/easy-http/guzzle-layer/actions?query=workflow%3Atests"><img src="https://github.com/easy-http/guzzle-layer/workflows/tests/badge.svg" alt="Build Status"></a>
 <a href="https://scrutinizer-ci.com/g/easy-http/guzzle-layer"><img src="https://img.shields.io/scrutinizer/g/easy-http/guzzle-layer.svg" alt="Code Quality"></a>
-<a href="https://scrutinizer-ci.com/g/easy-http/guzzle-layer/?branch=master"><img src="https://scrutinizer-ci.com/g/easy-http/guzzle-layer/badges/coverage.png?b=master" alt="Code Coverage"></a>
+<a href="https://sonarcloud.io/summary/overall?id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=coverage" alt="Code Coverage"></a>
 </p>
 <p align="center">
   <a href="https://stand-with-ukraine.pp.ua" title="#StandWithUkraine"><img alt="#StandWithUkraine" src="https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg"></a>
@@ -12,10 +12,14 @@
     <a href="#tada-php-support" title="PHP Versions Supported"><img alt="PHP Versions Supported" src="https://img.shields.io/badge/php-7.4%20to%208.2-777bb3.svg?logo=php&logoColor=white&labelColor=555555"></a>
 </p>
 
+<p align="center">
+    :rocket: Change easily from one client to another using http layer contracts
+</p>
+
 # Guzzle Layer
 
 This is an HTTP layer for Guzzle Client based on [Http layer contracts](https://github.com/easy-http/layer-contracts).
-This contracts standardize the way you consume http clients like Guzzle, Symfony, and others. No matter what client you are using, the methods you have to execute to do the job are the same for all!!.
+These contracts standardize the way you consume http clients like Guzzle, Symfony, and others. No matter what client you are using, the methods you have to execute to do the job are the same for all!!.
 For more layers see [Easy Http](https://github.com/easy-http).
 
 <a href="https://sonarcloud.io/dashboard?id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=security_rating" alt="Bugs"></a>
@@ -24,8 +28,8 @@ For more layers see [Easy Http](https://github.com/easy-http).
 
 This library supports the following versions of Guzzle Http Client.
 
-<a href="#tada-php-support" title="PHP Versions Supported"><img alt="PHP Versions Supported" src="https://img.shields.io/badge/guzzle-6.x-blue"></a>
-<a href="#tada-php-support" title="PHP Versions Supported"><img alt="PHP Versions Supported" src="https://img.shields.io/badge/guzzle-7.x-blue"></a>
+<a href="#tada-php-support" title="Guzzle Version Supported"><img alt="PHP Versions Supported" src="https://img.shields.io/badge/guzzle-6.x-blue"></a>
+<a href="#tada-php-support" title="Guzzle Version Supported"><img alt="PHP Versions Supported" src="https://img.shields.io/badge/guzzle-7.x-blue"></a>
 
 # Installation
 
