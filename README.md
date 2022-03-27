@@ -1,9 +1,9 @@
 <p align="center"><img src="https://blog.pleets.org/img/articles/easy-http-logo-320.png"></p>
 
 <p align="center">
-<a href="https://travis-ci.com/easy-http/guzzle-layer"><img src="https://travis-ci.com/easy-http/guzzle-layer.svg?branch=master" alt="Build Status"></a>
+<a href="https://github.com/easy-http/guzzle-layer/actions?query=workflow%3Atests"><img src="https://github.com/easy-http/guzzle-layer/workflows/tests/badge.svg" alt="Build Status"></a>
 <a href="https://scrutinizer-ci.com/g/easy-http/guzzle-layer"><img src="https://img.shields.io/scrutinizer/g/easy-http/guzzle-layer.svg" alt="Code Quality"></a>
-<a href="https://scrutinizer-ci.com/g/easy-http/guzzle-layer/?branch=master"><img src="https://scrutinizer-ci.com/g/easy-http/guzzle-layer/badges/coverage.png?b=master" alt="Code Coverage"></a>
+<a href="https://sonarcloud.io/summary/overall?id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=coverage" alt="Code Coverage"></a>
 </p>
 <p align="center">
   <a href="https://stand-with-ukraine.pp.ua" title="#StandWithUkraine"><img alt="#StandWithUkraine" src="https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg"></a>
