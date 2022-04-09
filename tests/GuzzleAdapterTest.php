@@ -3,8 +3,11 @@
 namespace Tests;
 
 use EasyHttp\LayerContracts\Exceptions\HttpClientException;
+use EasyHttp\LayerContracts\Exceptions\HttpConnectionException;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use PHPUnit\Framework\TestCase;
@@ -37,6 +40,47 @@ class GuzzleAdapterTest extends TestCase
     /**
      * @test
      */
+    public function itCanHandleBasicAuthentication()
+    {
+        $handler = HandlerStack::create(new PayPalApi());
+        $client  = new Client(['handler' => $handler]);
+
+        $request = new GuzzleRequest('POST', 'https://api.sandbox.paypal.com/v1/oauth2/token', []);
+        $user    = 'AeA1QIZXiflr1_-r0U2UbWTziOWX1GRQer5jkUq4ZfWT5qwb6qQRPq7jDtv57TL4POEEezGLdutcxnkJ';
+        $pass    = 'ECYYrrSHdKfk_Q0EdvzdGkzj58a66kKaUQ5dZAEv4HvvtDId2_DpSuYDB088BZxGuMji7G4OFUnPog6p';
+        $request->setBasicAuth($user, $pass);
+        $request->setQuery(['grant_type' => 'client_credentials']);
+        $adapter = new GuzzleAdapter($client);
+
+        $response = $adapter->request($request);
+
+        $this->assertSame(200, $response->getStatusCode());
+        $this->assertSame(PayPalApiResponse::token(), $response->parseJson());
+    }
+
+    /**
+     * @test
+     */
+    public function itThrowsTheHttpConnectionExceptionOnServerConnectionFailure()
+    {
+        $this->expectException(HttpConnectionException::class);
+        $this->expectExceptionMessage('Error Communicating with Server');
+
+        $handler = new MockHandler(
+            [
+                new ConnectException('Error Communicating with Server', new \GuzzleHttp\Psr7\Request('GET', 'test')),
+            ]
+        );
+        $client  = new Client(['handler' => $handler]);
+
+        $request = new GuzzleRequest('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD', []);
+        $adapter = new GuzzleAdapter($client);
+        $adapter->request($request);
+    }
+
+    /**
+     * @test
+     */
     public function itThrowsTheHttpClientExceptionOnServerErrors()
     {
         $this->expectException(HttpClientException::class);
@@ -57,21 +101,20 @@ class GuzzleAdapterTest extends TestCase
     /**
      * @test
      */
-    public function itCanHandleBasicAuthentication()
+    public function itThrowsTheHttpClientExceptionOnTransferErrors()
     {
-        $handler = HandlerStack::create(new PayPalApi());
+        $this->expectException(HttpClientException::class);
+        $this->expectExceptionMessage('Error Communicating with Server');
+
+        $handler = new MockHandler(
+            [
+                new TransferException('Error Communicating with Server'),
+            ]
+        );
         $client  = new Client(['handler' => $handler]);
 
-        $request = new GuzzleRequest('POST', 'https://api.sandbox.paypal.com/v1/oauth2/token', []);
-        $user    = 'AeA1QIZXiflr1_-r0U2UbWTziOWX1GRQer5jkUq4ZfWT5qwb6qQRPq7jDtv57TL4POEEezGLdutcxnkJ';
-        $pass    = 'ECYYrrSHdKfk_Q0EdvzdGkzj58a66kKaUQ5dZAEv4HvvtDId2_DpSuYDB088BZxGuMji7G4OFUnPog6p';
-        $request->setBasicAuth($user, $pass);
-        $request->setQuery(['grant_type' => 'client_credentials']);
+        $request = new GuzzleRequest('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD', []);
         $adapter = new GuzzleAdapter($client);
-
-        $response = $adapter->request($request);
-
-        $this->assertSame(200, $response->getStatusCode());
-        $this->assertSame(PayPalApiResponse::token(), $response->parseJson());
+        $adapter->request($request);
     }
 }
