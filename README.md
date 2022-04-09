@@ -93,9 +93,9 @@ $client = new GuzzleClient();
 $client
     ->prepareRequest('POST', 'https://jsonplaceholder.typicode.com/posts')
     ->setJson([
-    'title' => 'foo',
-    'body' => 'bar',
-    'userId' => 1,
+        'title' => 'foo',
+        'body' => 'bar',
+        'userId' => 1,
 ]);
 
 $response = $client->execute();
