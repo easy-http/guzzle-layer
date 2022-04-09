@@ -67,6 +67,10 @@ class GuzzleAdapter implements HttpClientAdapter
             $options['cert'] = $request->getSecurityContext()->getCertificate();
         }
 
+        if ($request->hasSecurityContext() && $request->getSecurityContext()->hasPrivateKey()) {
+            $options['ssl_key'] = $request->getSecurityContext()->getPrivateKey();
+        }
+
         if (count($request->getBasicAuth())) {
             $options['auth'] = $request->getBasicAuth();
         }
