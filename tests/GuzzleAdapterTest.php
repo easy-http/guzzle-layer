@@ -3,7 +3,9 @@
 namespace Tests;
 
 use EasyHttp\LayerContracts\Exceptions\HttpClientException;
+use EasyHttp\LayerContracts\Exceptions\HttpConnectionException;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -32,6 +34,26 @@ class GuzzleAdapterTest extends TestCase
 
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame(RatesApiResponse::usd(), $response->parseJson());
+    }
+
+    /**
+     * @test
+     */
+    public function itThrowsTheHttpConnectionExceptionOnServerConnectionFailure()
+    {
+        $this->expectException(HttpConnectionException::class);
+        $this->expectExceptionMessage('Error Communicating with Server');
+
+        $handler = new MockHandler(
+            [
+                new ConnectException('Error Communicating with Server', new \GuzzleHttp\Psr7\Request('GET', 'test')),
+            ]
+        );
+        $client  = new Client(['handler' => $handler]);
+
+        $request = new GuzzleRequest('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD', []);
+        $adapter = new GuzzleAdapter($client);
+        $adapter->request($request);
     }
 
     /**
