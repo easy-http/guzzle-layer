@@ -7,6 +7,7 @@ use EasyHttp\LayerContracts\Exceptions\HttpConnectionException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use PHPUnit\Framework\TestCase;
@@ -67,6 +68,26 @@ class GuzzleAdapterTest extends TestCase
         $handler = new MockHandler(
             [
                 new RequestException('Error Communicating with Server', new \GuzzleHttp\Psr7\Request('GET', 'test')),
+            ]
+        );
+        $client  = new Client(['handler' => $handler]);
+
+        $request = new GuzzleRequest('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD', []);
+        $adapter = new GuzzleAdapter($client);
+        $adapter->request($request);
+    }
+
+    /**
+     * @test
+     */
+    public function itThrowsTheHttpClientExceptionOnTransferErrors()
+    {
+        $this->expectException(HttpClientException::class);
+        $this->expectExceptionMessage('Error Communicating with Server');
+
+        $handler = new MockHandler(
+            [
+                new TransferException('Error Communicating with Server'),
             ]
         );
         $client  = new Client(['handler' => $handler]);
