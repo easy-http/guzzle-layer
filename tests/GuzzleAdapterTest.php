@@ -10,7 +10,6 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
-use PHPUnit\Framework\TestCase;
 use EasyHttp\GuzzleLayer\GuzzleAdapter;
 use EasyHttp\GuzzleLayer\GuzzleRequest;
 use Tests\Mocks\PayPalApi;
