@@ -12,6 +12,14 @@ class CertificateApi extends BaseMock
 {
     public function __invoke(RequestInterface $request, array $options = []): PromiseInterface
     {
+        if ($options['verify']) {
+            // simulate self-signed certificate
+            throw new RequestException(
+                $this->selfSignedCertificateMessage($request),
+                $request,
+            );
+        }
+
         if (!isset($options['cert'])) {
             throw new RequestException(
                 $this->certificateRequiredMessage($request),
@@ -61,6 +69,13 @@ class CertificateApi extends BaseMock
         $url = $request->getUri()->getScheme() . '://' . $request->getUri()->getHost() . $request->getUri()->getPath();
 
         return "cURL error 58: unable to set private key file: '$path' type PEM (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for " . $url; // phpcs:ignore
+    }
+
+    private function selfSignedCertificateMessage(RequestInterface $request): string
+    {
+        $url = $request->getUri()->getScheme() . '://' . $request->getUri()->getHost() . $request->getUri()->getPath();
+
+        return 'cURL error 60: SSL certificate problem: self signed certificate in certificate chain (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for ' . $url; // phpcs:ignore
     }
 
     private function match(string $certificate, string $privateKey): bool
