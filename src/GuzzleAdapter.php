@@ -51,18 +51,45 @@ class GuzzleAdapter implements HttpClientAdapter
             'verify' => $request->isSSL()
         ];
 
+        $this
+            ->setHeaders($request, $options)
+            ->setJson($request, $options)
+            ->setQuery($request, $options)
+            ->setSecurityContext($request, $options)
+            ->setBasicAuth($request, $options);
+
+        return $options;
+    }
+
+    private function setHeaders(HttpClientRequest $request, &$options): self
+    {
         if ($request->hasHeaders()) {
             $options['headers'] = $request->getHeaders();
         }
 
+        return $this;
+    }
+
+    private function setJson(HttpClientRequest $request, &$options): self
+    {
         if ($request->hasJson()) {
             $options['json'] = $request->getJson();
         }
 
+        return $this;
+    }
+
+    private function setQuery(HttpClientRequest $request, &$options): self
+    {
         if ($request->hasQuery()) {
             $options['query'] = $request->getQuery();
         }
 
+        return $this;
+    }
+
+    private function setSecurityContext(HttpClientRequest $request, &$options): self
+    {
         if ($request->hasSecurityContext() && $request->getSecurityContext()->hasCertificate()) {
             $options['cert'] = $request->getSecurityContext()->getCertificate();
         }
@@ -71,10 +98,15 @@ class GuzzleAdapter implements HttpClientAdapter
             $options['ssl_key'] = $request->getSecurityContext()->getPrivateKey();
         }
 
+        return $this;
+    }
+
+    private function setBasicAuth(HttpClientRequest $request, &$options): self
+    {
         if (count($request->getBasicAuth())) {
             $options['auth'] = $request->getBasicAuth();
         }
 
-        return $options;
+        return $this;
     }
 }
