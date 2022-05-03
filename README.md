@@ -26,13 +26,11 @@
 <a href="https://sonarcloud.io/dashboard?id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=bugs" alt="Bugs"></a>
 <a href="https://sonarcloud.io/dashboard?id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=code_smells" alt="Bugs"></a>
 
-This is an HTTP layer for Guzzle Client based on [Http layer contracts](https://github.com/easy-http/layer-contracts).
-These contracts standardize the way you consume http clients like Guzzle, Symfony, and others with a consistent interface. No matter what client you are using,
+This is an HTTP layer for Guzzle Client based on [HTTP layer contracts](https://github.com/easy-http/layer-contracts).
+These contracts standardize the way you consume HTTP clients like Guzzle, Symfony, and others with a consistent interface. No matter what client you are using,
 the methods you have to execute to do the job are the same for all!!.
 
-:computer: Check out all client layer implementations at [Easy Http](https://github.com/easy-http). This project contains several implementations for PHP Clients.
-
-:books: Check out the [WIKI](https://github.com/easy-http/layer-contracts/wiki) to learn how to use any layer that implements these contracts.
+:books: Check out the [Documentation](https://easy-http.com/docs) to learn how to use any layer that implements these contracts.
 
 This library supports the following versions of Guzzle Http Client.
 
@@ -49,77 +47,5 @@ composer require easy-http/guzzle-layer
 
 # Usage
 
-## Simple requests
-
-You can execute a simple request as follows. 
-
-```php
-use EasyHttp\GuzzleLayer\GuzzleClient;
-
-$client = new GuzzleClient();
-$response = $client->call('GET', 'https://api.ratesapi.io/api/2020-07-24/?base=USD');
-
-$response->getStatusCode(); // 200
-$response->parseJson();     // array
-```
-
-## Prepared requests
-
-A prepared request is a more flexible way to generate a request. You can use the `setQuery` method
-to specify request query.
-
-```php
-use EasyHttp\GuzzleLayer\GuzzleClient;
-
-$client = new GuzzleClient();
-
-$client
-    ->prepareRequest('POST', 'https://api.ratesapi.io/api/2020-07-24/')
-    ->setQuery(['base' => 'USD']);
-
-$response = $client->execute();
-
-$response->getStatusCode(); // 200
-$response->parseJson();     // array
-```
-
-Also, you can use the `setJson` method to set a json string as the body.
-
-```php
-use EasyHttp\GuzzleLayer\GuzzleClient;
-
-$client = new GuzzleClient();
-
-$client
-    ->prepareRequest('POST', 'https://jsonplaceholder.typicode.com/posts')
-    ->setJson([
-        'title' => 'foo',
-        'body' => 'bar',
-        'userId' => 1,
-]);
-
-$response = $client->execute();
-
-$response->getStatusCode(); // 201
-$response->parseJson();     // array
-```
-
-## HTTP Authentication
-
-Actually this library supports basic authentication natively.
-
-```php
-use EasyHttp\GuzzleLayer\GuzzleClient;
-
-$client = new GuzzleClient();
-
-$client
-    ->prepareRequest('POST', 'https://api.sandbox.example.com/v1/oauth2/token')
-    ->setQuery(['grant_type' => 'client_credentials'])
-    ->setBasicAuth('username', 'password');
-
-$response = $client->execute();
-
-$response->getStatusCode(); // 200
-$response->parseJson();     // array
-```
+This layer as well as any other uses the [HTTP Layer Contracts](https://github.com/easy-http/layer-contracts).
+You can check all behavior for the current version at [Easy Http Documentation](https://easy-http.com/docs).
