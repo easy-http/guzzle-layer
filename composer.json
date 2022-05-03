@@ -30,7 +30,7 @@
         "fakerphp/faker": "^1.19"
     },
     "scripts": {
-        "tests": "phpunit --stop-on-error --stop-on-failure --colors=always",
+        "tests": "phpunit --stop-on-error --stop-on-failure --stop-on-risky --colors=always",
         "tests-check": "@tests --testdox",
         "tests-xml": "phpunit --stop-on-error --stop-on-failure --coverage-clover phpunit.coverage.xml",
         "phpcs-check": "phpcs --colors -s",
