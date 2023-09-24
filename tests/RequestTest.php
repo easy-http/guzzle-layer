@@ -76,6 +76,21 @@ abstract class RequestTest extends TestCase
     /**
      * @test
      */
+    public function itSetsUrlEncodedData()
+    {
+        $this->setMock(new HttpInfo());
+
+        $request = $this->createRequest('GET', $this->uri);
+        $request->setUrlEncodedData(['key' => 'value']);
+        $response = $this->buildAdapter()->request($request)->parseJson();
+
+        $this->assertSame(['key' => 'value'], $request->getUrlEncodedData());
+        $this->assertSame('key=value', $response['body']);
+    }
+
+    /**
+     * @test
+     */
     public function itSetsHeaders()
     {
         $this->setMock(new HttpInfo());

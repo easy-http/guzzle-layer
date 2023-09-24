@@ -44,9 +44,9 @@ class GuzzleResponseTest extends TestCase
 
         $this->assertSame(
             [
-            'Server' => 'Apache/2.4.41 (Ubuntu)',
-            'Cache-Control' => 'no-cache, private',
-            'Content-Type' => 'application/json'
+                'Server' => 'Apache/2.4.41 (Ubuntu)',
+                'Cache-Control' => 'no-cache, private',
+                'Content-Type' => 'application/json'
             ],
             $response->getHeaders()
         );
