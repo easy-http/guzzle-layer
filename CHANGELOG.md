@@ -1,6 +1,6 @@
 # Release Notes for 1.x
 
-## [v1.1.0 (2022-05-03)](https://github.com/easy-http/guzzle-layer/compare/v1.0.0...v1.1.0)
+## [v1.1.0 (2023-09-24)](https://github.com/easy-http/guzzle-layer/compare/v1.0.0...v1.1.0)
 
 ### Added
 - Added support application/x-www-form-urlencoded content type ([#50](https://github.com/easy-http/guzzle-layer/pull/50))
