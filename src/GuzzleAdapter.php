@@ -55,6 +55,7 @@ class GuzzleAdapter implements HttpClientAdapter
             ->setHeaders($request, $options)
             ->setJson($request, $options)
             ->setQuery($request, $options)
+            ->setUrlEncodedData($request, $options)
             ->setSecurityContext($request, $options)
             ->setBasicAuth($request, $options);
 
@@ -105,6 +106,15 @@ class GuzzleAdapter implements HttpClientAdapter
     {
         if (count($request->getBasicAuth())) {
             $options['auth'] = $request->getBasicAuth();
+        }
+
+        return $this;
+    }
+
+    private function setUrlEncodedData(HttpClientRequest $request, array &$options): self
+    {
+        if ($request->hasUrlEncodedData()) {
+            $options['form_params'] = $request->getUrlEncodedData();
         }
 
         return $this;
