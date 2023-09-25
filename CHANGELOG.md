@@ -4,6 +4,7 @@
 
 ### Added
 - Added support application/x-www-form-urlencoded content type ([#50](https://github.com/easy-http/guzzle-layer/pull/50))
+- Added support for PHP 8.2, 8.3 ([#51](https://github.com/easy-http/guzzle-layer/pull/51))
 
 ## [v1.0.0 (2022-05-03)](https://github.com/easy-http/guzzle-layer/compare/v0.3.0...v1.0.0)
 
