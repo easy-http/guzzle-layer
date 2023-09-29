@@ -8,6 +8,7 @@ use EasyHttp\LayerContracts\Exceptions\ImpossibleToParseJsonException;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use PHPUnit\Framework\TestCase;
+use Tests\Mocks\HttpInfo;
 use Tests\Mocks\RatesApi;
 
 class GuzzleResponseTest extends TestCase
@@ -20,7 +21,7 @@ class GuzzleResponseTest extends TestCase
         $handler = HandlerStack::create(new RatesApi());
         $client  = new Client(['handler' => $handler]);
 
-        $request = new GuzzleRequest('POST', 'https://http-info-api.com/some-end-point', []);
+        $request = new GuzzleRequest('POST', 'https://http-info-api.com/some-end-point');
         $adapter = new GuzzleAdapter($client);
 
         $response = $adapter->request($request);
@@ -37,7 +38,7 @@ class GuzzleResponseTest extends TestCase
         $handler = HandlerStack::create(new RatesApi());
         $client  = new Client(['handler' => $handler]);
 
-        $request = new GuzzleRequest('POST', 'https://http-info-api.com/some-end-point', []);
+        $request = new GuzzleRequest('POST', 'https://http-info-api.com/some-end-point');
         $adapter = new GuzzleAdapter($client);
 
         $response = $adapter->request($request);
@@ -55,6 +56,34 @@ class GuzzleResponseTest extends TestCase
     /**
      * @test
      */
+    public function itCanHandlesMultipleCookieHeaders()
+    {
+        $handler = HandlerStack::create(new HttpInfo());
+        $client  = new Client(['handler' => $handler]);
+
+        $request = new GuzzleRequest('POST', 'https://http-info-api.com/some-end-point');
+        $request->setServerCookies(
+            [
+            'cookie1=value1',
+            'cookie2=value2'
+            ]
+        );
+        $adapter = new GuzzleAdapter($client);
+
+        $response = $adapter->request($request)->parseJson();
+
+        $this->assertSame(
+            [
+                'cookie1=value1',
+                'cookie2=value2',
+            ],
+            $response['headers']['Set-Cookie']
+        );
+    }
+
+    /**
+     * @test
+     */
     public function itThrowsTheNotParsedExceptionOnInvalidJsonString()
     {
         $this->expectException(ImpossibleToParseJsonException::class);
@@ -64,7 +93,7 @@ class GuzzleResponseTest extends TestCase
         $handler = HandlerStack::create($mock);
         $client  = new Client(['handler' => $handler]);
 
-        $request = new GuzzleRequest('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD', []);
+        $request = new GuzzleRequest('POST', 'https://api.ratesapi.io/api/2020-07-24/?base=USD');
         $adapter = new GuzzleAdapter($client);
 
         $adapter->request($request)->parseJson();
