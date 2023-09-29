@@ -64,8 +64,18 @@ class GuzzleAdapter implements HttpClientAdapter
 
     private function setHeaders(HttpClientRequest $request, &$options): self
     {
+        $headers = [];
+
         if ($request->hasHeaders()) {
-            $options['headers'] = $request->getHeaders();
+            $headers = $request->getHeaders();
+        }
+
+        if ($request->hasServerCookies()) {
+            $headers['Set-Cookie'] = $request->getServerCookies();
+        }
+
+        if (!empty($headers)) {
+            $options['headers'] = $headers;
         }
 
         return $this;
