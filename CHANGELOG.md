@@ -1,5 +1,10 @@
 # Release Notes for 1.x
 
+## [v1.2.0 (2023-09-28)](https://github.com/easy-http/guzzle-layer/compare/v1.1.0...v1.2.0)
+
+### Added
+- Added support for multiple Set-Cookie header values ([#52](https://github.com/easy-http/guzzle-layer/pull/52))
+
 ## [v1.1.0 (2023-09-24)](https://github.com/easy-http/guzzle-layer/compare/v1.0.0...v1.1.0)
 
 ### Added
