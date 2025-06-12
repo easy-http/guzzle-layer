@@ -1,9 +1,9 @@
 <p align="center"><img src="https://blog.pleets.org/img/articles/easy-http-logo-320.png"></p>
 
 <p align="center">
-<a href="https://github.com/easy-http/guzzle-layer/actions?query=workflow%3Atests"><img src="https://github.com/easy-http/guzzle-layer/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://scrutinizer-ci.com/g/easy-http/guzzle-layer"><img src="https://img.shields.io/scrutinizer/g/easy-http/guzzle-layer.svg" alt="Code Quality"></a>
-<a href="https://sonarcloud.io/summary/overall?id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=coverage" alt="Code Coverage"></a>
+<a href="https://github.com/easy-http/guzzle-layer/actions/workflows/tests.yml"><img src="https://github.com/easy-http/guzzle-layer/actions/workflows/tests.yml/badge.svg?branch=1.x" alt="Build Status"></a>
+<a href="https://scrutinizer-ci.com/g/easy-http/guzzle-layer/?branch=1.x"><img src="https://scrutinizer-ci.com/g/easy-http/guzzle-layer/badges/quality-score.png?b=1.x" alt="Scrutinizer"></a>
+<a href="https://scrutinizer-ci.com/g/easy-http/guzzle-layer/code-structure/1.x/code-coverage"><img src="https://scrutinizer-ci.com/g/easy-http/guzzle-layer/badges/coverage.png?b=1.x" alt="Code Coverage"></a>
 </p>
 <p align="center">
     <a href="#tada-php-support" title="PHP Versions Supported"><img alt="PHP Versions Supported" src="https://img.shields.io/badge/php-7.4%20to%208.3-777bb3.svg?logo=php&logoColor=white&labelColor=555555"></a>
