@@ -2,8 +2,8 @@
 
 <p align="center">
 <a href="https://github.com/easy-http/guzzle-layer/actions/workflows/tests.yml"><img src="https://github.com/easy-http/guzzle-layer/actions/workflows/tests.yml/badge.svg?branch=1.x" alt="Build Status"></a>
-<a href="https://scrutinizer-ci.com/g/easy-http/guzzle-layer/?branch=1.x"><img src="https://scrutinizer-ci.com/g/easy-http/guzzle-layer/badges/quality-score.png?b=1.x" alt="Scrutinizer"></a>
-<a href="https://scrutinizer-ci.com/g/easy-http/guzzle-layer/code-structure/1.x/code-coverage"><img src="https://scrutinizer-ci.com/g/easy-http/guzzle-layer/badges/coverage.png?b=1.x" alt="Code Coverage"></a>
+<a href="https://scrutinizer-ci.com/g/easy-http/guzzle-layer"><img src="https://img.shields.io/scrutinizer/g/easy-http/guzzle-layer.svg" alt="Code Quality"></a>
+<a href="https://scrutinizer-ci.com/g/easy-http/guzzle-layer/?branch=master"><img src="https://scrutinizer-ci.com/g/easy-http/guzzle-layer/badges/coverage.png?b=master" alt="Code Coverage"></a>
 </p>
 <p align="center">
     <a href="#tada-php-support" title="PHP Versions Supported"><img alt="PHP Versions Supported" src="https://img.shields.io/badge/php-7.4%20to%208.3-777bb3.svg?logo=php&logoColor=white&labelColor=555555"></a>
@@ -19,9 +19,9 @@
 
 # Guzzle Layer
 
-<a href="https://sonarcloud.io/dashboard?id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=security_rating" alt="Bugs"></a>
-<a href="https://sonarcloud.io/dashboard?id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=bugs" alt="Bugs"></a>
-<a href="https://sonarcloud.io/dashboard?id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=code_smells" alt="Bugs"></a>
+<a href="https://sonarcloud.io/component_measures?metric=security_rating&branch=1.x&id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=security_rating&branch=1.x" alt="Bugs"></a>
+<a href="https://sonarcloud.io/component_measures?metric=bugs&branch=1.x&id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=bugs&branch=1.x" alt="Bugs"></a>
+<a href="https://sonarcloud.io/component_measures?metric=code_smells&branch=1.x&id=easy-http_guzzle-layer"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_guzzle-layer&metric=code_smells&branch=1.x" alt="Bugs"></a>
 
 This is an HTTP layer for Guzzle Client based on [HTTP layer contracts](https://github.com/easy-http/layer-contracts).
 These contracts standardize the way you consume HTTP clients like Guzzle, Symfony, and others with a consistent interface. No matter what client you are using,
